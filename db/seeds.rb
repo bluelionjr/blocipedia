@@ -32,8 +32,8 @@ end
 25.times do
   Wiki.create!(
     user: User.all.sample,
-    title: Faker::Hacker.noun,
-    body: Faker::Hacker.say_something_smart
+    title: Faker::StarWars.character,
+    body: Faker::StarWars.quote
   )
 end
 
