@@ -17,7 +17,7 @@ admin = User.create!(
   email: "admin@jrtest.com",
   password: "helloworld",
   password_confirmation: "helloworld",
-  role: "premium"
+  role: "admin"
 )
 
 11.times do

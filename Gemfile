@@ -37,3 +37,4 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 # Pundit for Authorization System
 gem 'pundit'
+gem 'stripe'
