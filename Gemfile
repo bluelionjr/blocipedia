@@ -37,4 +37,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 # Pundit for Authorization System
 gem 'pundit'
+# Stripe for payments
 gem 'stripe'
+# Redcarpet for markdown
+gem 'redcarpet'
