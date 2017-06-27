@@ -1,7 +1,12 @@
 
 <div>
   <h1><%= @wiki.title %></h1>
+    <% if @wiki.private %>
+      <i class="glyphicon glyphicon-sunglasses"></i>
+      <small>Private Wiki</small>
+    <% end %>
 </div>
+<br>
 
 <div class="row">
   <div class="col-md-8">

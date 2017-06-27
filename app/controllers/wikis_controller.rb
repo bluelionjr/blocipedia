@@ -1,20 +1,22 @@
 class WikisController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  # skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @wikis = Wiki.all
   end
 
   def create
-    @wiki = current_user.wikis.new(wiki_params)
+    @wiki = Wiki.new(wiki_params)
+    @wiki.title = params[:wiki][:title]
+    @wiki.body = params[:wiki][:body]
+    @wiki.private = params[:wiki][:private]
     @wiki.user = current_user
-    authorize @wiki
 
     if @wiki.save
-      flash[:notice] = "Wiki was saved."
-      redirect_to @wiki
+      flash[:notice] = "You created a new wiki!"
+      redirect_to [@wiki]
     else
-      flash.now[:alert] = "There was an error saving the wiki."
+      flash[:alert] = "There was an error when we tried to save it. Try again."
       render :new
     end
   end
@@ -25,32 +27,32 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new
-    authorize @wiki
   end
 
   def edit
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
   end
 
   def update
     @wiki = Wiki.find(params[:id])
-    @wiki.assign_attributes(wiki_params)
     authorize @wiki
+    @wiki.assign_attributes(wiki_params)
+    @wiki.title = params[:wiki][:title]
+    @wiki.body = params[:wiki][:body]
+    @wiki.private = params[:wiki][:private]
 
 
     if @wiki.save
       flash[:notice] = "Wiki was updated."
       redirect_to @wiki
     else
-      flash.now[:alert] = "There was an error saving the post. Please try again."
+      flash.now[:alert] = "There was an error saving the wiki. Please try again."
       render :edit
     end
   end
 
   def destroy
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
 
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."

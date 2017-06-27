@@ -1,33 +1,16 @@
-<h1>New Wiki</h1>
-
+<br>
+<h1>Create a New Wiki</h1>
 <div class="row">
   <div class="col-md-4">
-    <p>Enter your new wiki information below...if you want.</p>
+    <p>Policies and guidelines for creating wikis are developed by the community.</p>
+    <br>
+    <h5>Rules</h5>
+    <ul>
+      <li>Everybody love everybody</li>
+    </ul>
   </div>
 
-<div class="col-md-8">
-  <%= form_for @wiki do |f| %>
-    <div class="form-group">
-      <%= f.label :title %>
-      <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :body %>
-      <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
-    </div>
-    <!-- <div class="form-group">
-      <%= f.label :private, class: "checkbox" do %>
-        <%= f.check_box :private %>Private
-      <% end %>
-      <p>Check this box to make this a secret wiki.</p>
-    </div> -->
-    <div class="form-group">
-      <%= f.label :private, class: "btn btn-primary" do %>
-        <%= f.check_box :private, toggle: "buttons" %>  Private
-        <% end %>
-        <p>Check the private box to make this a secret wiki.</p>
-    <div class="form-group">
-      <%= f.submit "Save", class: "btn btn-success" %>
-    </div>
-  <% end %>
+  <div class="col-md-8">
+    <%= render partial: 'form', locals: { wiki: @wiki } %>
+  </div>
 </div>

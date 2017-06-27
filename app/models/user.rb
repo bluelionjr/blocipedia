@@ -14,9 +14,10 @@ class User < ApplicationRecord
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
   end
 
-  after_create :new_user
-
-  def new_user
-    UserMailer.new_user(self).deliver_now
-  end
+  # Turned off mailer due to Sendgrid hating me
+  # after_create :new_user
+  #
+  # def new_user
+  #   UserMailer.new_user(self).deliver_now
+  # end
 end
