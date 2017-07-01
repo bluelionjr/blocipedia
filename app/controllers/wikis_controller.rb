@@ -2,7 +2,7 @@ class WikisController < ApplicationController
   # skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
   end
 
   def create
@@ -31,15 +31,16 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def update
     @wiki = Wiki.find(params[:id])
     authorize @wiki
     @wiki.assign_attributes(wiki_params)
-    @wiki.title = params[:wiki][:title]
-    @wiki.body = params[:wiki][:body]
-    @wiki.private = params[:wiki][:private]
+    # @wiki.title = params[:wiki][:title]
+    # @wiki.body = params[:wiki][:body]
+    # @wiki.private = params[:wiki][:private]
 
 
     if @wiki.save

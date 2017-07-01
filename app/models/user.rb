@@ -8,6 +8,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :wikis, dependent: :destroy
+  has_many :collaborators
+  has_many :wikis, through: :collaborators
 
   def avatar_url(size)
     gravatar_id = Digest::MD5::hexdigest(self.email).downcase

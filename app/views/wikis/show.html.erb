@@ -21,3 +21,16 @@
     <% end %>
   </div>
 </div>
+<br>
+
+
+  <% if @wiki.private && (current_user.premium? || current_user.admin?) %>
+  <div class="col-md-8 well">
+  <h3>List of Collaborators</h3>
+  <h5><%= link_to "Edit", edit_wiki_path(@wiki) %> wiki to add or remove collaborators</h5>
+  <% @wiki.collaborators.each do |c| %>
+    <% user = User.find(c.user_id) %>
+    <%= user.email %></br>
+  <% end %>
+</div>
+<% end %>
